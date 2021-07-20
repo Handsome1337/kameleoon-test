@@ -12,6 +12,6 @@ const Search: React.FC<ISearchProps> = ({count}) => {
       <span>{count} tests</span>
     </div>
   );
-}
+};
 
 export default Search;

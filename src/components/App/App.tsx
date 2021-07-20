@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
-import Table, {SortType} from '../Table/Table';
+import Table from '../Table/Table';
 import API from '../../api/api';
-import IRow from '../../types/row';
+import {IRow, SortType} from '../../types';
 
 const App: React.FC = () => {
   const [tests, setTests] = useState<IRow[]>([]);
   const [formattedTests, setFormattedTests] = useState<IRow[]>([]);
 
   useEffect(() => {
-    API.getTests().then(result => {
+    API.getTests().then((result) => {
       setTests(result);
       setFormattedTests(result);
-    })
+    });
   }, []);
 
   const sort = ({field, type}: SortType) => {
@@ -26,7 +26,6 @@ const App: React.FC = () => {
     }))
   };
 
-
   return (
     <>
       <Header />
@@ -34,6 +33,6 @@ const App: React.FC = () => {
       <Table tests={formattedTests} sort={sort} />
     </>
   );
-}
+};
 
 export default App;

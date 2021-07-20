@@ -1,5 +1,5 @@
 import React from 'react';
-import IRow from '../../types/row';
+import {IRow} from '../../types';
 import './TableRow.scss';
 
 interface ITableRowProps {
@@ -9,7 +9,7 @@ interface ITableRowProps {
 const TableRow: React.FC<ITableRowProps> = ({data}) => {
   const {name, type, status, site} = data;
 
-  const actionText = status === 'Online' || status === 'Paused' ? 'Results' : 'Finalize';
+  const actionText = status === 'Draft' ? 'Finalize' : 'Results';
 
   return (
     <tr className={`table-row table-row--${site.split('.').shift()}`}>
@@ -20,6 +20,6 @@ const TableRow: React.FC<ITableRowProps> = ({data}) => {
       <td className={`action-column action-column--${actionText.toLowerCase()}`}><a>{actionText}</a></td>
     </tr>
   );
-}
+};
 
 export default TableRow;

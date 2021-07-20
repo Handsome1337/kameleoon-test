@@ -1,5 +1,4 @@
-import IRow from '../types/row';
-import ITest from '../types/test';
+import {IRow, ITest} from '../types';
 
 const mapType = (type: ITest['type']): IRow['type'] => {
   switch (type) {

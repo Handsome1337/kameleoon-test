@@ -1,15 +1,12 @@
 import axios, {AxiosInstance} from 'axios';
-import ITest from '../types/test';
-import ISite from '../types/site';
-import IRow from '../types/row';
-import mapStatus from '../mappers/mapStatus';
-import mapType from '../mappers/mapType';
+import {IRow, ISite, ITest} from '../types';
+import {mapStatus, mapType} from '../mappers';
 
 class API {
   private http: AxiosInstance;
 
   constructor() {
-    this.http = axios.create({baseURL: 'http://localhost:3100'})
+    this.http = axios.create({baseURL: 'http://localhost:3100'});
   }
 
   async getTests(): Promise<IRow[]> {
@@ -29,7 +26,7 @@ class API {
   }
 
   async getSite(id: string): Promise<ISite> {
-    const response = await this.http.get<ISite>(`/sites/${id}`)
+    const response = await this.http.get<ISite>(`/sites/${id}`);
     return response.data;
   }
 }

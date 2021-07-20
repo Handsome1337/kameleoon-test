@@ -1,3 +1,11 @@
-type Sort = 'ASC' | 'DESC';
+import IRow from './row';
 
-export default Sort;
+type SortName = 'ASC' | 'DESC';
+type SortField = Exclude<keyof IRow, 'id' | 'status'>;
+type SortType = {field: SortField; type: SortName};
+
+export {
+  SortName,
+  SortField,
+  SortType
+};

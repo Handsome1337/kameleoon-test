@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
 import './Table.scss';
 import TableRow from '../TableRow/TableRow';
-import IRow from '../../types/row';
-import Sort from '../../types/sort';
-
-type SortField = Exclude<keyof IRow, 'id' | 'status'>;
-export type SortType = {field: SortField; type: Sort};
+import {IRow, SortField, SortName, SortType} from '../../types';
 
 interface ITableProps {
   tests: IRow[];
@@ -24,7 +20,7 @@ const Table: React.FC<ITableProps> = ({tests, sort}) => {
   });
 
   const onSortClick = (field: SortField) => {
-    let type: Sort;
+    let type: SortName;
 
     if (activeSort?.field !== field) {
       type = 'ASC';
