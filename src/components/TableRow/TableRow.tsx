@@ -3,7 +3,7 @@ import IRow from '../../types/row';
 import './TableRow.scss';
 
 interface ITableRowProps {
-  data: IRow;
+  data: Omit<IRow, 'id'>;
 }
 
 const TableRow: React.FC<ITableRowProps> = ({data}) => {
