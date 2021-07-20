@@ -1,7 +1,8 @@
+import React from 'react';
 import './Table.scss';
 import TableRow from '../TableRow/TableRow';
 
-function Table() {
+const Table: React.FC = () => {
   return (
     <table>
       <thead>

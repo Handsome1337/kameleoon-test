@@ -1,8 +1,9 @@
+import React from 'react';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import Table from '../Table/Table';
 
-function App() {
+const App: React.FC = () => {
   return (
     <>
       <Header />
