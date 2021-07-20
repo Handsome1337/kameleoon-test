@@ -1,13 +1,17 @@
-import React from 'react';
+import React, {MouseEventHandler, useState} from 'react';
 import './Table.scss';
 import TableRow from '../TableRow/TableRow';
-import IRow from "../../types/row";
+import IRow from '../../types/row';
+import Sort from '../../types/sort';
 
 interface ITableProps {
-  tests: IRow[]
+  tests: IRow[];
+  sortByName: Function;
 }
 
-const Table: React.FC<ITableProps> = ({tests}) => {
+const Table: React.FC<ITableProps> = ({tests, sortByName}) => {
+  const [nameSortType, setNameSortType] = useState<Sort | null>(null);
+
   if (!tests.length) {
     return null;
   }
@@ -16,14 +20,21 @@ const Table: React.FC<ITableProps> = ({tests}) => {
     return <TableRow key={id} data={{name, type, status, site}} />
   });
 
+  const onSortByNameClick: MouseEventHandler<HTMLButtonElement> = () => {
+    const sortType = nameSortType === 'ASC' ? 'DESC' : 'ASC';
+
+    setNameSortType(sortType);
+    sortByName(sortType);
+  };
+
   return (
     <table>
       <thead>
         <tr>
-          <th className="name-column">Name</th>
-          <th className="type-column">Type</th>
-          <th className="status-column">Status</th>
-          <th className="site-column">Site</th>
+          <th className="name-column"><button className={`${nameSortType ? nameSortType : ''}`} onClick={onSortByNameClick}>Name</button></th>
+          <th className="type-column"><button>Type</button></th>
+          <th className="status-column"><button>Status</button></th>
+          <th className="site-column"><button>Site</button></th>
           <th className="action-column">Action</th>
         </tr>
       </thead>

@@ -4,17 +4,54 @@ table {
 
 thead {
   tr {
-    color: #999999;
-    font-size: 11px;
-    line-height: 13px;
-    font-weight: 500;
-    text-transform: uppercase;
-
     padding: 0 15px;
     margin-bottom: 10px;
 
     background-color: transparent;
     border-left-color: transparent;
+
+    button {
+      position: relative;
+
+      color: #999999;
+      font-family: "Roboto", sans-serif;
+      font-size: 11px;
+      line-height: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+
+      padding: 0;
+      border: 0;
+      background-color: transparent;
+
+      cursor: pointer;
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        right: -15px;
+        top: 50%;
+
+        display: none;
+        width: 7px;
+        height: 4px;
+
+        background-image: url("Sort.svg");
+        background-repeat: no-repeat;
+        transform: translateY(-50%);
+      }
+
+      &.ASC::after {
+        display: block;
+      }
+
+      &.DESC::after {
+        display: block;
+
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
   }
 
   .action-column {
@@ -23,16 +60,11 @@ thead {
 }
 
 tr {
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  line-height: 14px;
   text-align: left;
 
   display: flex;
   align-items: center;
-  padding: 20px 12px 20px 15px;
 
-  background-color: #FFFFFF;
   border-radius: 3px;
   border-left: 4px solid;
 }
