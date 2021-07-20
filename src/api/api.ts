@@ -2,6 +2,8 @@ import axios, {AxiosInstance} from 'axios';
 import ITest from '../types/test';
 import ISite from '../types/site';
 import IRow from '../types/row';
+import mapStatus from '../mappers/mapStatus';
+import mapType from '../mappers/mapType';
 
 class API {
   private http: AxiosInstance;
@@ -20,8 +22,8 @@ class API {
     return tests.map(({id, name, type, status, siteId}) => ({
       id,
       name,
-      type,
-      status,
+      type: mapType(type),
+      status: mapStatus(status),
       site: new URL(sites.find((site) => site.id === siteId)!.url).host.replace(/^www./, '')
     }));
   }
