@@ -16,6 +16,24 @@
 
   .status-column {
     font-weight: 500;
+    text-transform: capitalize;
+
+    &--online {
+      color: #1BDA9D;
+    }
+
+    &--paused {
+      color: #FF8346;
+    }
+
+    &--stopped {
+      color: #FE4848;
+    }
+
+    &--draft {
+      color:
+        #5C5C5C;
+    }
   }
 
   .site-column {
@@ -29,15 +47,35 @@
     line-height: 15px;
     font-weight: 500;
     text-align: center;
+    text-transform: capitalize;
 
     display: block;
     padding: 7px;
 
-    background-color: red;
     border-radius: 10px;
   }
 
+  .action-column--results a {
+    background-color: #2EE5AC;
+  }
+
+  .action-column--finalize a {
+    background-color: #7D7D7D;
+  }
+
+  &--market {
+    border-left-color: #E14165;
+  }
+
+  &--delivery {
+    border-left-color: #C2C2FF;
+  }
+
+  &--games {
+    border-left-color: #8686FF;
+  }
+
   &:hover {
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 }
