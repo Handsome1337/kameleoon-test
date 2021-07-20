@@ -32,7 +32,7 @@ const Table: React.FC<ITableProps> = ({tests, sort}) => {
     sort({field, type});
   };
 
-  const renderDefaultSortButton = (text: SortField) => (
+  const renderSortButton = (text: SortField) => (
     <button
       className={activeSort?.field === text ? activeSort.type : undefined}
       onClick={() => {
@@ -47,10 +47,10 @@ const Table: React.FC<ITableProps> = ({tests, sort}) => {
     <table>
       <thead>
         <tr>
-          <th className="name-column">{renderDefaultSortButton('name')}</th>
-          <th className="type-column">{renderDefaultSortButton('type')}</th>
-          <th className="status-column"><button>Status</button></th>
-          <th className="site-column">{renderDefaultSortButton('site')}</th>
+          <th className="name-column">{renderSortButton('name')}</th>
+          <th className="type-column">{renderSortButton('type')}</th>
+          <th className="status-column">{renderSortButton('status')}</th>
+          <th className="site-column">{renderSortButton('site')}</th>
           <th className="action-column">Action</th>
         </tr>
       </thead>

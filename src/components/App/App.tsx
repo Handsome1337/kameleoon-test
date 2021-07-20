@@ -5,6 +5,13 @@ import Table from '../Table/Table';
 import API from '../../api/api';
 import {IRow, SortType} from '../../types';
 
+enum statusRate {
+  Online,
+  Paused,
+  Stopped,
+  Draft
+};
+
 const App: React.FC = () => {
   const [tests, setTests] = useState<IRow[]>([]);
   const [formattedTests, setFormattedTests] = useState<IRow[]>([]);
@@ -18,12 +25,12 @@ const App: React.FC = () => {
 
   const sort = ({field, type}: SortType) => {
     setFormattedTests([...formattedTests].sort((a, b) => {
-      if (type === 'ASC') {
-        return a[field].localeCompare(b[field]);
+      if (field === 'status') {
+        return type === 'ASC' ? statusRate[a.status] - statusRate[b.status] : statusRate[b.status] - statusRate[a.status];
       }
 
-      return b[field].localeCompare(a[field]);
-    }))
+      return type === 'ASC' ? a[field].localeCompare(b[field]) : b[field].localeCompare(a[field]);
+    }));
   };
 
   return (

@@ -1,7 +1,7 @@
 import IRow from './row';
 
 type SortName = 'ASC' | 'DESC';
-type SortField = Exclude<keyof IRow, 'id' | 'status'>;
+type SortField = Exclude<keyof IRow, 'id'>;
 type SortType = {field: SortField; type: SortName};
 
 export {
