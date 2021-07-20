@@ -1,0 +1,35 @@
+$placeholder-color: #D1D1D1;
+
+.search-bar {
+  position: relative;
+
+  input {
+    color: #474747;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+
+    width: 100%;
+    padding: 16px 82px 14px 37px;
+
+    border: 1px solid #EBEBEB;
+    border-radius: 15px;
+    background: #FFFFFF url("Magnifier.svg") no-repeat 13px 50%;
+  }
+
+  ::-webkit-input-placeholder {color:$placeholder-color;}
+  ::-moz-placeholder          {color:$placeholder-color;}
+  :-moz-placeholder           {color:$placeholder-color;}
+  :-ms-input-placeholder      {color:$placeholder-color;}
+
+  span {
+    position: absolute;
+
+    top: 50%;
+    right: 17px;
+
+    color: $placeholder-color;
+
+    transform: translateY(-50%);
+  }
+}

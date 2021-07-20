@@ -70,9 +70,24 @@
     url("fonts/Roboto-Medium.woff");
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 41px 52px 49px 48px;
 
   background-color: #E5E5E5;
+}
+
+#root {
+  width: 1054px;
+  margin: auto;
+  padding: 41px 52px 49px 48px;
 }
