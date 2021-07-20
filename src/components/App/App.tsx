@@ -1,10 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
-import Table from '../Table/Table';
+import Table, {SortType} from '../Table/Table';
 import API from '../../api/api';
 import IRow from '../../types/row';
-import Sort from '../../types/sort';
 
 const App: React.FC = () => {
   const [tests, setTests] = useState<IRow[]>([]);
@@ -17,13 +16,13 @@ const App: React.FC = () => {
     })
   }, []);
 
-  const sortByName = (type: Sort) => {
+  const sort = ({field, type}: SortType) => {
     setFormattedTests([...formattedTests].sort((a, b) => {
       if (type === 'ASC') {
-        return a.name.localeCompare(b.name);
+        return a[field].localeCompare(b[field]);
       }
 
-      return b.name.localeCompare(a.name);
+      return b[field].localeCompare(a[field]);
     }))
   };
 
@@ -32,7 +31,7 @@ const App: React.FC = () => {
     <>
       <Header />
       <Search count={formattedTests.length} />
-      <Table tests={formattedTests} sortByName={sortByName} />
+      <Table tests={formattedTests} sort={sort} />
     </>
   );
 }
