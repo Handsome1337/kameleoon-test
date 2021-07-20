@@ -1,0 +1,62 @@
+table {
+  width: 100%;
+}
+
+thead {
+  tr {
+    color: #999999;
+    font-size: 11px;
+    line-height: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    padding: 0 15px;
+    margin-bottom: 10px;
+
+    background-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .action-column {
+    font-size: 0;
+  }
+}
+
+tr {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  padding: 20px 12px 20px 15px;
+
+  background-color: #FFFFFF;
+  border-radius: 3px;
+  border-left: 4px solid #E14165;
+}
+
+.name-column {
+  width: 390px;
+  margin-right: 25px;
+}
+
+.type-column {
+  width: 100px;
+  margin-right: 25px;
+}
+
+.status-column {
+  width: 62px;
+  margin-right: 54px;
+}
+
+.site-column {
+  width: 140px;
+  margin-right: 32px;
+}
+
+.action-column {
+  width: 95px;
+}
