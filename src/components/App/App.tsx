@@ -1,7 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../Header/Header';
 import Search from '../Search/Search';
 import Table from '../Table/Table';
+import NotFound from '../NotFound/NotFound';
 import API from '../../api/api';
 import {IRow, SortField, SortName, SortType} from '../../types';
 
@@ -14,6 +15,7 @@ enum statusRate {
 
 const App: React.FC = () => {
   const [tests, setTests] = useState<IRow[]>([]);
+  const [sortedTests, setSortedTests] = useState<IRow[]>([]);
   const [formattedTests, setFormattedTests] = useState<IRow[]>([]);
   const [activeSort, setActiveSort] = useState<SortType | null>(null);
   const [activeFilter, setActiveFilter] = useState<string>('');
@@ -21,6 +23,7 @@ const App: React.FC = () => {
   useEffect(() => {
     API.getTests().then((result) => {
       setTests(result);
+      setSortedTests(result);
       setFormattedTests(result);
     });
   }, []);
@@ -35,10 +38,16 @@ const App: React.FC = () => {
     });
   };
 
-  const search = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value;
+  const search = (value: string) => {
     setActiveFilter(value);
-    setFormattedTests(filter(tests, value));
+    setFormattedTests(filter(sortedTests, value));
+  };
+
+  const resetSearch = () => {
+    setActiveFilter('');
+    setActiveSort(null);
+    setSortedTests(tests);
+    setFormattedTests(tests);
   };
 
   const sort = (field: SortField) => {
@@ -59,15 +68,21 @@ const App: React.FC = () => {
     });
 
     setActiveSort({field, type});
-    setTests(result);
+    setSortedTests(result);
     setFormattedTests(filter(result, activeFilter));
   };
+
+  const searchResult = (
+    activeFilter && !formattedTests.length
+      ? <NotFound resetFilter={resetSearch} />
+      : <Table tests={formattedTests} sort={sort} activeSort={activeSort} />
+  );
 
   return (
     <>
       <Header />
-      <Search search={search} count={formattedTests.length} />
-      <Table tests={formattedTests} sort={sort} activeSort={activeSort} />
+      <Search activeFilter={activeFilter} search={(evt) => search(evt.target.value)} count={formattedTests.length} />
+      {searchResult}
     </>
   );
 };
