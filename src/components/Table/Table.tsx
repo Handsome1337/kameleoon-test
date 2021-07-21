@@ -14,8 +14,8 @@ const Table: React.FC<ITableProps> = ({tests, sort, activeSort}) => {
     return null;
   }
 
-  const tableRows = tests.map(({id, name, type, status, site}) => {
-    return <TableRow key={id} data={{name, type, status, site}} />;
+  const tableRows = tests.map((test) => {
+    return <TableRow key={test.id} data={{...test}} />;
   });
 
   const renderSortButton = (text: SortField) => (

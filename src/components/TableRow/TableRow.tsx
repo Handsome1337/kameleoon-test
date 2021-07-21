@@ -1,15 +1,16 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import {IRow} from '../../types';
 import './TableRow.scss';
 
 interface ITableRowProps {
-  data: Omit<IRow, 'id'>;
+  data: IRow;
 }
 
 const TableRow: React.FC<ITableRowProps> = ({data}) => {
-  const {name, type, status, site} = data;
+  const {id, name, type, status, site} = data;
 
-  const actionText = status === 'Draft' ? 'Finalize' : 'Results';
+  const actionText = status === 'Draft' ? 'finalize' : 'results';
 
   return (
     <tr className={`table-row table-row--${site.split('.').shift()}`}>
@@ -17,7 +18,9 @@ const TableRow: React.FC<ITableRowProps> = ({data}) => {
       <td className="type-column">{type}</td>
       <td className={`status-column status-column--${status.toLowerCase()}`}>{status}</td>
       <td className="site-column">{site}</td>
-      <td className={`action-column action-column--${actionText.toLowerCase()}`}><a>{actionText}</a></td>
+      <td className={`action-column action-column--${actionText.toLowerCase()}`}>
+        <Link to={`/${actionText}/${id}`}>{actionText}</Link>
+      </td>
     </tr>
   );
 };

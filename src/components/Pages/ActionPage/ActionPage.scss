@@ -1,0 +1,28 @@
+.back-link {
+  position: relative;
+
+  color: #222222;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  line-height: 25px;
+
+  display: block;
+  margin-top: auto;
+  margin-left: 27px;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: -27px;
+
+    display: block;
+    width: 9px;
+    height: 16px;
+    background-image: url("back.svg");
+    background-repeat: no-repeat;
+
+    transform: translateY(-50%);
+  }
+}

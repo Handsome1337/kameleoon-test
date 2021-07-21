@@ -9,6 +9,11 @@ class API {
     this.http = axios.create({baseURL: 'http://localhost:3100'});
   }
 
+  async getTest(id: string): Promise<ITest> {
+    const response = await this.http.get<ITest>(`/tests/${id}`);
+    return response.data;
+  };
+
   async getTests(): Promise<IRow[]> {
     const tests = (await this.http.get<ITest[]>('/tests')).data;
     const siteIds = new Set(tests.map((test) => test.siteId));

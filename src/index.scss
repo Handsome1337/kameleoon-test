@@ -86,8 +86,15 @@ body {
   background-color: #FAFAFA;
 }
 
+a {
+  text-decoration: none;
+}
+
 #root {
+  display: flex;
+  flex-direction: column;
   width: 1054px;
+  height: 100vh;
   margin: auto;
   padding: 41px 52px 49px 48px;
 }
