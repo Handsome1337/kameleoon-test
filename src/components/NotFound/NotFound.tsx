@@ -7,10 +7,10 @@ interface INotFoundProps {
 
 const NotFound: React.FC<INotFoundProps> = ({resetFilter}) => {
   return (
-    <section className="not-found">
+    <div className="not-found">
       <h2>Your search did not match any results.</h2>
       <button className="reset-button" onClick={resetFilter}>Reset</button>
-    </section>
+    </div>
   );
 };
 

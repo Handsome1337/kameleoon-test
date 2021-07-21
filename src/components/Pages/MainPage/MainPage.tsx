@@ -81,8 +81,10 @@ const MainPage: React.FC = () => {
   return (
     <>
       <Header text="dashboard" />
-      <Search activeFilter={activeFilter} search={(evt) => search(evt.target.value)} count={formattedTests.length} />
-      {searchResult}
+      <section>
+        <Search activeFilter={activeFilter} search={(evt) => search(evt.target.value)} count={formattedTests.length} />
+        {searchResult}
+      </section>
     </>
   );
 };
