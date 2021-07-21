@@ -1,16 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Table.scss';
 import TableRow from '../TableRow/TableRow';
-import {IRow, SortField, SortName, SortType} from '../../types';
+import {IRow, SortField, SortType} from '../../types';
 
 interface ITableProps {
   tests: IRow[];
-  sort: (activeSort: SortType) => void;
+  sort: (field: SortField) => void;
+  activeSort: SortType | null;
 }
 
-const Table: React.FC<ITableProps> = ({tests, sort}) => {
-  const [activeSort, setActiveSort] = useState<SortType | null>(null);
-
+const Table: React.FC<ITableProps> = ({tests, sort, activeSort}) => {
   if (!tests.length) {
     return null;
   }
@@ -19,25 +18,10 @@ const Table: React.FC<ITableProps> = ({tests, sort}) => {
     return <TableRow key={id} data={{name, type, status, site}} />;
   });
 
-  const onSortClick = (field: SortField) => {
-    let type: SortName;
-
-    if (activeSort?.field !== field) {
-      type = 'ASC';
-    } else {
-      type = activeSort?.type === 'ASC' ? 'DESC' : 'ASC';
-    }
-
-    setActiveSort({field, type});
-    sort({field, type});
-  };
-
   const renderSortButton = (text: SortField) => (
     <button
       className={activeSort?.field === text ? activeSort.type : undefined}
-      onClick={() => {
-        onSortClick(text)
-      }}
+      onClick={() => sort(text)}
     >
       {text}
     </button>
