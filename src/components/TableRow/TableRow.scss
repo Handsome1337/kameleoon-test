@@ -81,7 +81,8 @@
     border-left-color: #8686FF;
   }
 
-  &:hover {
+  &:hover,
+  &.focused {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   }
 }
